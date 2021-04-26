@@ -22,3 +22,14 @@ The following technologies were used to create this app:
 - Express JS
 - React JS
 - Node JS
+
+### Dependencies
+
+The following depencies were used:
+
+#### Frontend
+
+- React Router Dom
+- Bootstrap
+
+#### Backend
