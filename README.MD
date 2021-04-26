@@ -31,5 +31,14 @@ The following depencies were used:
 
 - React Router Dom
 - Bootstrap
+- Axios
 
 #### Backend
+
+- bcrypt
+
+This hashes the users password. Provides better security when communicating with the user database.
+
+- jsonwebtoken
+
+Generates a web token that can be stored in the user local storage once they have successfully logged in. This is required to allow users to see their dashboard.
