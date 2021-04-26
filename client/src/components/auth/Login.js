@@ -1,8 +1,28 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const Login = (props) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    const handleSubmit = () => {
+        axios.post('http://localhost:3001/users/login', {
+            username: username,
+            password: password
+        }).then(res => {
+            //Save the token to local storage if successful
+            if(res.status === 200) {
+                const token = res.data.token
+                localStorage.setItem('token', token)
+
+                //redirect to dashboard
+                window.location.href = '/dashboard'
+            } else {
+                //do some validations on the page
+            }
+            }
+        )
+    }
 
     return (
         <div style={{ height: '300px' }}>
@@ -34,7 +54,9 @@ const Login = (props) => {
                         onClick={props.renderSignup}
                     >Signup</span></p>
                 </div>
-                <button className="font-weight-bold py-2 px-4 bg-primary text-white border-0 rounded-sm">Login</button>
+                <button className="font-weight-bold py-2 px-4 bg-primary text-white border-0 rounded-sm"
+                onClick={() => {handleSubmit()}}
+                >Login</button>
             </div>
         </div>
     )
