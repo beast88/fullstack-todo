@@ -3,8 +3,8 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-    username: {required: true, unique: true, trim: true, minlength: 4},
-    password: {required: true},
+    username: {type: String, required: true, unique: true, trim: true, minlength: 4},
+    password: {type: String, required: true},
 },  {
     timestamps: true,
 })

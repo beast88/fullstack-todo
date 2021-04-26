@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -22,6 +23,11 @@ const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('MongoDB database connection has been established successfully!');
 });
+
+//Import routes
+import userRoutes from './routes/users.js'
+
+app.use('/users', userRoutes)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

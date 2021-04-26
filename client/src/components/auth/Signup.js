@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Signup = (props) => {
     const [username, setUsername] = useState('')
@@ -11,6 +12,13 @@ const Signup = (props) => {
             setDisabled(false)
         }
     }, [password, confirmPassword])
+
+    const handleSubmit = () => {
+        axios.post('http://localhost:3001/users/signup', {
+            username: username,
+            password: password
+        }).then(res => console.log(res))
+    }
 
     return (
         <div style={{ height: '300px' }}>
@@ -53,7 +61,9 @@ const Signup = (props) => {
                     >
                         Login</span></p>
                 </div>
-                <button disabled={disabled} className={`${disabled ? "bg-secondary" : "bg-primary"} font-weight-bold py-2 px-4 text-white border-0 rounded-sm`}>Create</button>
+                <button disabled={disabled} className={`${disabled ? "bg-secondary" : "bg-primary"} font-weight-bold py-2 px-4 text-white border-0 rounded-sm`} 
+                    onClick={() => {handleSubmit()}} 
+                >Create</button>
             </div>
         </div>
     )
