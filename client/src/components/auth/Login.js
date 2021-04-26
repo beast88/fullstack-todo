@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -29,7 +29,10 @@ const Login = () => {
 
             <div className="d-flex justify-content-between align-items-center" >
                 <div>
-                    <p className="mb-0 font-weight-bolder">New User? <span className="text-primary cursor">Signup</span></p>
+                    <p className="mb-0 font-weight-bolder">New User? <span 
+                        className="text-primary cursor"
+                        onClick={props.renderSignup}
+                    >Signup</span></p>
                 </div>
                 <button className="font-weight-bold py-2 px-4 bg-primary text-white border-0 rounded-sm">Login</button>
             </div>
