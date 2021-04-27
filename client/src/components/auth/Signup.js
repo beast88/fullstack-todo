@@ -14,7 +14,7 @@ const Signup = (props) => {
     }, [password, confirmPassword])
 
     const handleSubmit = () => {
-        axios.post('http://localhost:3001/users/signup', {
+        axios.post('/users/signup', {
             username: username,
             password: password
         }).then(res => console.log(res))

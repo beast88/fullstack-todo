@@ -1,12 +1,24 @@
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/global/Navbar'
-
-import React from 'react'
+import axios from 'axios'
 
 const Dashboard = (props) => {
+  const [username, setUsername] = useState('')
+
+  useEffect(() => {
+    axios.get('/users/user',
+    {headers: 
+      {token: localStorage.getItem('token')}
+    })
+      .then(res => setUsername(res.data.user.username))
+  }, [])
+
   return(
     <div className="" >
       <Navbar />
-      <h1>Dashboard</h1>
+      <div className="p-3">
+        <p className="text-center">Welcome <span className="text-primary font-weight-bolder">{username}</span>, here is your to do list</p>
+      </div>
     </div>
   )
 }

@@ -6,7 +6,7 @@ const Login = (props) => {
     const [password, setPassword] = useState('')
 
     const handleSubmit = () => {
-        axios.post('http://localhost:3001/users/login', {
+        axios.post('/users/login', {
             username: username,
             password: password
         }).then(res => {

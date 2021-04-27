@@ -55,4 +55,26 @@ router.post('/login', (req, res) => {
   })
 })
 
+//Get user information once they are logged in
+router.get('/user', (req, res) => {
+  let token = req.headers.token
+  //verify token
+  jwt.verify(token, 'secretkey', (err, decoded) => {
+    if(err) return res.status(401).json({
+      title: 'not authorized'
+    })
+
+    //Valid user, find their information in the database based on the token payload we assigned earlier
+    User.findOne({_id: decoded.userId}, (err, user) => {
+      if(err) return console.log(err)
+      return res.status(200).json({
+        title: 'success',
+        user: {
+          username: user.username
+        }
+      })
+    })
+  })
+})
+
 export default router
