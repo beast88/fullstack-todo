@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import Signup from '../components/auth/Signup'
 import Login from '../components/auth/Login'
 
-import '../css/landing.css'
-
 function Landing() {
   const [isSignup, setIsSignup] = useState(false)
 

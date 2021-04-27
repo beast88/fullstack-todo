@@ -6,6 +6,8 @@ import Landing from './pages/Landing';
 import RequireAuth from './components/auth/RequireAuth'
 import Dashboard from './pages/Dashboard'
 
+import './css/app.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
