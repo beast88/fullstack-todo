@@ -25,8 +25,10 @@ connection.once('open', () => {
 
 //Import routes
 import userRoutes from './routes/users.js'
+import todoRoutes from './routes/todos.js'
 
 app.use('/users', userRoutes)
+app.use('/todo', todoRoutes)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

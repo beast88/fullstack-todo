@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema()
+const Schema = mongoose.Schema
 
 const todoSchema = new Schema({
-    username: {type: String, required: true},
+    author: {type: Schema.Types.ObjectId, ref: 'User'},
     title: {type: String, required: true},
     completed: {type: Boolean, default: false},
 }, {

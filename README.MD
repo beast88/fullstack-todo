@@ -31,6 +31,7 @@ The following depencies were used:
 
 - React Router Dom
 - Bootstrap
+- Bootstrap Icons
 - Axios
 
 #### Backend
