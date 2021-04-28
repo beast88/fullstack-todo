@@ -4,6 +4,7 @@ import axios from 'axios'
 const Login = (props) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState(false)
 
     const handleSubmit = () => {
         axios.post('/users/login', {
@@ -17,20 +18,23 @@ const Login = (props) => {
 
                 //redirect to dashboard
                 window.location.href = '/dashboard'
-            } else {
-                //do some validations on the page
             }
+        }).catch(err => {
+            setErrorMessage(true)
+            setUsername('')
+            setPassword('')
         })
     }
 
     return (
-        <div style={{ height: '300px' }}>
+        <div>
             <h2 className="mb-4 text-primary text-center">login</h2>
             <div className="mb-4">
                 <label className="font-weight-bold" >username</label>
                 <input 
                     className="w-100 rounded-sm border border-info p-2" 
-                    type="text" 
+                    type="text"
+                    value={username}
                     placeholder="username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
@@ -40,13 +44,14 @@ const Login = (props) => {
                 <label className="font-weight-bold">password</label>
                 <input 
                     className="w-100 rounded-sm border border-info p-2" 
-                    type="password" 
+                    type="password"
+                    value={password}
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
 
-            <div className="d-flex justify-content-between align-items-center" >
+            <div className="d-flex justify-content-between align-items-center mb-4" >
                 <div>
                     <p className="mb-0 font-weight-bolder">New User? <span 
                         className="text-primary cursor"
@@ -56,6 +61,10 @@ const Login = (props) => {
                 <button className="font-weight-bold py-2 px-4 bg-primary text-white border-0 rounded-sm"
                 onClick={() => {handleSubmit()}}
                 >Login</button>
+            </div>
+
+            <div className={`${errorMessage ? "d-block" : "d-none"} border border-danger p-2 mb-2 rounded-sm text-danger font-weight-bolder text-center`} >
+               <p className="mb-0"><i className="bi bi-exclamation-circle mr-2"></i> invalid username/password</p>
             </div>
         </div>
     )

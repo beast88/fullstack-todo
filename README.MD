@@ -38,6 +38,8 @@ The following depencies were used:
 
 #### Backend
 
+- mongoose
+
 - nodemon
 
 Allows live refreshing of server when changes have been made to files
