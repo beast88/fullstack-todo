@@ -20,8 +20,7 @@ const Login = (props) => {
             } else {
                 //do some validations on the page
             }
-            }
-        )
+        })
     }
 
     return (
