@@ -2,7 +2,6 @@ import express from 'express'
 const router = express.Router()
 
 import jwt from 'jsonwebtoken'
-
 import Todo from '../models/todo.model.js'
 
 //Get Todos
@@ -41,6 +40,31 @@ router.post('/', (req, res) => {
       return res.status(200).json({
         title: 'todo successfully added',
         todo: newTodo
+      })
+    })
+
+  })
+})
+
+//Update todo route
+router.put('/:todoId', (req, res) => {
+  jwt.verify(req.headers.token, 'secretkey', (err, decoded) => {
+    if(err) return res.status(401).json({
+      title: 'not authorized'
+    })
+
+    //Pass multiple conditions to the findOne function (author id & todo id)
+    Todo.findOne({author: decoded.userId, _id: req.params.todoId}, (err, todo) => {
+      if(err) return console.log(err)
+
+      todo.completed = true
+      todo.save(error => {
+        if(error) return console.log(error)
+
+        return res.status(200).json({
+          title: 'success',
+          todo: todo
+        })
       })
     })
 

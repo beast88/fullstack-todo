@@ -28,6 +28,12 @@ const Dashboard = (props) => {
     setTodos(prevState => [...prevState, newItem])
   }
 
+  const updateTodoList = (oldTodo) => {
+    setTodos((prevState) => {
+      return prevState.filter(todo => todo._id !== oldTodo._id)
+    })
+  }
+
   return(
     <div className="" >
       <Navbar />
@@ -35,9 +41,11 @@ const Dashboard = (props) => {
         <p className="mb-0">Welcome <span className="text-primary font-weight-bolder">{username}</span>, here is your to do list</p>
         <TodoForm addTodo={addTodo} />
 
-        { todos.map((todo) => {
-          return <TodoItem todo={todo} key={todo._id} />
-        }) }
+        { 
+          todos.filter(todo => !todo.completed).map((todo) => {
+          return <TodoItem todo={todo} updateTodoList={updateTodoList} key={todo._id} />
+          })
+        }
 
       </div>
     </div>
