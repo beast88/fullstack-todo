@@ -4,13 +4,14 @@
 
 ### Description
 
-This a simple full stack CRUD to do list app built using the MERN stack.
+This a simple full stack CRUD to do list app built using the MERN stack. A json database has been set up on MongoAtlas and I've constructed my own REST API to interact with it.
 
 ### Features
 
 - Users can create a profile for themselves
 - Their individual to do lists will be displayed
 - Users can create, updated and destroy their own to do items
+- Lists dynamically change according to user input
 - Light form validations to ensure when creating a profile passwords are the same
 - Authentication wall and protected routes to ensure that only logged in users with a valid webtoken have access to the dashboard component
 
@@ -39,6 +40,8 @@ The following depencies were used:
 #### Backend
 
 - mongoose
+
+Object data modeling library that manages the application data and schema.
 
 - nodemon
 

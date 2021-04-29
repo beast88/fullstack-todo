@@ -50,7 +50,7 @@ const Dashboard = (props) => {
   return(
     <div className="" >
       <Navbar />
-      <div className="p-3 d-flex flex-column align-items-center">
+      <div className="p-3 d-flex flex-column align-items-center customheight">
         <p className="mb-0">Welcome <span className="text-primary font-weight-bolder">{username}</span>, here is your to do list</p>
         <TodoForm addTodo={addTodo} />
 
