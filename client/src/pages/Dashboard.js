@@ -41,6 +41,12 @@ const Dashboard = (props) => {
     setCompletedTodos(prevState => [...prevState, oldTodo])
   }
 
+  const updateCompletedList = (deletedItem) => {
+    setCompletedTodos((prevState) => {
+      return prevState.filter(todo => todo._id !== deletedItem._id)
+    })
+  }
+
   return(
     <div className="" >
       <Navbar />
@@ -71,7 +77,7 @@ const Dashboard = (props) => {
                 })
               :
                 completedTodos.map((todo) => {
-                  return <CompletedItems todo={todo} key={todo._id} />
+                  return <CompletedItems todo={todo} updateCompletedList={updateCompletedList} key={todo._id} />
                 })              
             }
           </div>

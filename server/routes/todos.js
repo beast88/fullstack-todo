@@ -42,7 +42,6 @@ router.post('/', (req, res) => {
         todo: newTodo
       })
     })
-
   })
 })
 
@@ -67,7 +66,25 @@ router.put('/:todoId', (req, res) => {
         })
       })
     })
+  })
+})
 
+//Delete todo route
+router.delete('/:todoId', (req, res) => {
+  jwt.verify(req.headers.token, 'secretkey', (err, decoded) => {
+    if(err) return res.status(401).json({
+      title: 'not authorized'
+    })
+
+    //Find an item and remove it from the database, the deleted item can be passed back as a response
+    Todo.findOneAndRemove({author: decoded.userId, _id: req.params.todoId}, (err, todo) => {
+      if(err) return console.log(err)
+
+      return res.status(200).json({
+        title: 'item removed',
+        todo: todo
+      })
+    })
   })
 })
 
